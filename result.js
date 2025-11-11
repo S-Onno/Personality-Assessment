@@ -10,7 +10,9 @@ const resultsData = [
         summary: '堅実で責任感が強い職人。安定と秩序を重んじる。',
         strengths: ['安定性と順序を重視し、手順通りの作業を完璧にこなす', '責任感が強く、一度引き受けた仕事は最後までやり抜く'],
         weaknesses: ['新しい変化や未知の領域への対応に時間がかかる', '柔軟性に欠け、既存のルールに固執しがち'],
+
         suitableEnvironment: ['明確な手順と規則があり、地道な努力が評価される環境。aaaaaaaaaaa'],
+
     },
     
 ];
@@ -22,7 +24,9 @@ function displayResult(typeId) {
     const data = resultsData.find(item => item.id === typeId); // IDに一致するデータを探す
 
     if(!data) {
+
         console.error(`ID:${typeId}に一致するデータが見つかりません。`);
+
         document.getElementById('result-type-title').textContent = "エラー：結果データの読み込みに失敗しました。";
         return;
     }
