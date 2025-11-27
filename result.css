@@ -33,6 +33,20 @@ main {
     text-align: center;
 }
 
+#result-image-section {
+    display: flex;
+    justify-content: center;
+
+    margin: 0 auto;
+
+    max-width: 50%;
+}
+
+#result-image {
+    max-width: 100%;
+    height: auto;
+}
+
 
 .type-header {
     padding: 20px 0 30px;
@@ -90,6 +104,7 @@ main {
     padding-left: 0;
     margin: 0;
 }
+
 
 #strengths-list li::before, 
 #weaknesses-list li::before,
