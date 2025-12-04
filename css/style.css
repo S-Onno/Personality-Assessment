@@ -1,0 +1,117 @@
+/* 全体の基本設定 */
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #000000;
+  height: 100vh;
+
+}
+
+/* スタートボタン・送信ボタン */
+.start-button,
+button[type="submit"] {
+  background-color: #4b4a4e;
+  color: white;
+  padding: 12px 15px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.start-button:hover,
+button[type="submit"]:hover {
+  background-color: #6c6a6f;
+  transform: scale(1.05);
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    padding-bottom: 120px;/*←footerの高さ*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #89c7de;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0;
+}
+
+p {
+  font-family: "フォント名", 游ゴシック, sans-serif;
+}
+
+/* 滑らかに表示する設定 */
+.fade-in-out {
+  opacity: 0; 
+  animation: fadeInOut 4s ease-in-out forwards;
+}
+
+/* アニメーションの定義 */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 滑らかに表示する設定 */
+.fade-in {
+  opacity: 0; 
+  animation: fadeIn 3s ease-in-out forwards;
+}
+
+/* アニメーションの定義 */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+
+
