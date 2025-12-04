@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>質問一覧カード(スマホ)</title>
+    <style>
+      :root {
+        /* モバイルでも読みやすいようにやや大きめのベースフォントを設定 */
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #f4f4f4;
+        font-family: system-ui, -apple-system, "Helvetica Neue", "Noto Sans JP", sans-serif;
+        padding: 72px 16px 88px;
+      }
+
+      /* 進捗ゲージ（画面上部に固定） */
+      #progress-container {
+        width: min(90%, 640px);
+        height: 24px;
+        background: #e5e5e5;
+        border-radius: 12px;
+        overflow: hidden;
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+
+      #progress-bar {
+        height: 100%;
+        width: 0%;
+        background: #ff9800;
+        border-radius: 12px;
+        transition: width 0.3s ease;
+      }
+
+      .card {
+        width: min(100%, 720px);
+        background: #fff;
+        padding: 20px;
+        border-radius: 14px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+        margin: 18px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .card-title {
+        font-size: clamp(1.2rem, 4vw, 1.4rem);
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .clear-selection {
+        display: none;
+        font-size: 0.85rem;
+        color: #666;
+        border: 1px solid #ccc;
+        background: #f5f5f5;
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 8px;
+        white-space: nowrap;
+      }
+
+      .clear-selection.visible {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .option-btn {
+        width: 100%;
+        padding: 14px 16px;
+        margin-bottom: 8px;
+        font-size: clamp(1rem, 3.5vw, 1.1rem);
+        border: 2px solid #c7c7c7;
+        border-radius: 10px;
+        background: #fafafa;
+        cursor: pointer;
+        transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        text-align: left;
+      }
+
+      .option-btn.selected {
+        background: #ff9800;
+        border-color: #ff9800;
+        color: #fff;
+        box-shadow: 0 2px 6px rgba(255, 152, 0, 0.3);
+      }
+
+      #submitBtn {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        padding: 16px 24px;
+        background: #ff9800;
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.05rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.22);
+      }
+
+      #submitBtn:active {
+        transform: translateY(1px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 進捗ゲージ（常に上に固定表示） -->
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+    <!-- ここから下はカード一覧（省略可・今までと同じ） -->
+    <div class="card" data-question="q1">
+      <div class="card-header">
+        <h2 class="card-title">Q1. 普段に近いものを選んでください</h2>
+        <button class="clear-selection" aria-label="選択を解除">選択を解除</button>
+      </div>
+      <button class="option-btn" name="q1" data-value="a">すぐ挑戦する</button>
+      <button class="option-btn" name="q1" data-value="b">慎重に考える</button>
+      <button class="option-btn" name="q1" data-value="c">周囲を見る</button>
+      <button class="option-btn" name="q1" data-value="d">変化を避ける</button>
+    </div>
+    <div class="card" data-question="q2">
+      <div class="card-header">
+        <h2 class="card-title">Q2. 普段に近いものを選んでください</h2>
+        <button class="clear-selection" aria-label="選択を解除">選択を解除</button>
+      </div>
+      <button class="option-btn" name="q2" data-value="a">すぐ挑戦する</button>
+      <button class="option-btn" name="q2" data-value="b">慎重に考える</button>
+      <button class="option-btn" name="q2" data-value="c">周囲を見る</button>
+      <button class="option-btn" name="q2" data-value="d">変化を避ける</button>
+    </div>
+    <div id="submitBtn">提出</div>
+    <script>
+      const answers = {};
+      const totalQuestions = document.querySelectorAll('.card').length;
+
+      document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const name = btn.getAttribute('name');
+
+          document.querySelectorAll(`.option-btn[name="${name}"]`)
+            .forEach(b => b.classList.remove('selected'));
+
+          btn.classList.add('selected');
+          answers[name] = btn.dataset.value;
+          updateProgress();
+          updateClearButtons();
+        });
+      });
+
+      document.querySelectorAll('.clear-selection').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = btn.closest('.card');
+          if (!card) return;
+          const q = card.dataset.question;
+          document.querySelectorAll(`.option-btn[name="${q}"]`).forEach(b => b.classList.remove('selected'));
+          if (answers.hasOwnProperty(q)) delete answers[q];
+          updateProgress();
+          btn.classList.remove('visible');
+        });
+      });
+
+      function updateClearButtons() {
+        document.querySelectorAll('.card').forEach(card => {
+          const q = card.dataset.question;
+          const hasSelected = !!document.querySelector(`.option-btn[name="${q}"].selected`);
+          const btn = card.querySelector('.clear-selection');
+          if (!btn) return;
+          if (hasSelected) btn.classList.add('visible'); else btn.classList.remove('visible');
+        });
+      }
+
+      updateClearButtons();
+
+      function updateProgress() {
+        const answered = Object.keys(answers).length;
+        const rate = (answered / totalQuestions) * 100;
+        document.getElementById('progress-bar').style.width = rate + '%';
+      }
+    </script>
+  </body>
+</html>
