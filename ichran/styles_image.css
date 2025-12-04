@@ -62,7 +62,19 @@ footer p {
 }
 
 .type-card {
-    flex: 0 0 auto;
+    flex: 1 1 calc(33.333% - 10.667px);
+    width: auto;
+    padding: 16px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    
+    display: flex;
+    /* ↓↓↓ この行を追加して横並びにする ↓↓↓ */
+    flex-direction: column;
+    align-items: center; 
+}
+    /* flex: 0 0 auto; もともとの.type-cardの中身
     width: 220px;
     padding: 16px;
     background-color: #ffffff;
@@ -70,8 +82,8 @@ footer p {
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     display: flex;
     align-items: center;
-    justify-content: center;
-}
+    justify-content: center; */
+
 
 .type-card img {
     max-width: 100%;
@@ -109,5 +121,68 @@ footer p {
     .type-card {
         width: 180px;
         padding: 12px;
+    }
+}
+
+/* ここから下はスマホで横スクロールしないでやろうとしてる設定 */
+
+@media (max-width: 768px) {
+    /* 1. スクロールラッパーの修正 */
+    .horizontal-scroll-wrapper {
+        /* 横スクロールを解除（念のため） */
+        overflow-x: hidden; 
+        /* カードを折り返さないことを確認 */
+        flex-wrap: nowrap; 
+        /* カード間のギャップを維持 */
+        gap: 8px; /* 画面が狭いので、ギャップを少し狭くします */
+        
+        /* カードが画面の端に張り付かないように、左右に余白を設定 */
+        padding-left: 16px; 
+        padding-right: 16px;
+    }
+
+    /* 2. カードの修正 */
+    .type-card {
+        /* 3つのカードが均等に並ぶように幅を設定 */
+        /* カード間のギャップ（8px）とパディング（左右16px）を考慮し、約1/3の幅に設定 */
+        width: calc((100vw - 32px - 16px) / 3); 
+        /* flex-shrink: 0; を設定することで、幅が縮むのを防ぎます */
+        flex-shrink: 0;
+        padding: 8px; /* カード内のパディングを小さくする */
+        font-family: "ヒラギノ角ゴ ProN W3", sans-serif;
+    }
+    
+    /* 3. 画像の修正 */
+    .type-card img {
+        /* 画像を小さくして、カードの幅に収まるようにします */
+        max-width: 100%; 
+        height: auto;
+    }
+
+    /* 4. タイトルや説明文の文字サイズ調整 (オプション) */
+    .type-card .card-title {
+    margin-top: 12px; 
+    margin-bottom: 4px; 
+    font-size: 1.0rem;
+    font-weight: 600;
+    text-align: center;
+
+    /* ↓↓↓ ここに新しいフォントファミリーを追記・変更 ↓↓↓ */
+    font-family: "ヒラギノ角ゴ ProN W3", sans-serif;
+
+        /* font-size: 0.8rem;
+        margin-top: 8px; 
+        margin-bottom: 2px; */
+    }
+
+    .type-card .card-description {
+        font-size: 0.7rem; /* 説明文をさらに縮小 */
+    }
+    
+    /* 5. type-containerの修正（左右のパディングを削除） */
+    .type-container {
+        /* カード自体に左右のパディングを定義するため、親要素のパディングをリセット */
+        padding-left: 0;
+        padding-right: 0;
     }
 }
