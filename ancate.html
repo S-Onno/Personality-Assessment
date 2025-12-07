@@ -4,9 +4,16 @@
   <meta charset="UTF-8">
   <title>アンケート</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ancate.css">
   <style>
     .hidden {
       display: none;
+    }
+    /* 追加：横並びグループのスタイルを直接記述 */
+    .radio-group-inline {
+      display: flex;
+      gap: 10px; /* ボタン間の間隔 */
+      margin-top: 5px;
     }
   </style>
 </head>
@@ -17,14 +24,20 @@
       <form action="result.html" method="post">
 
         <label for="a1">1. 国際電子ビジネス専門学校の在校生ですか？</label><br>
-        <input id="a1_yes" type="radio" name="a1" value="yes" onclick="toggleExtra(false)"><label for="a1_yes">はい</label>
-        <input id="a1_no" type="radio" name="a1" value="no" onclick="toggleExtra(true)"><label for="a1_no">いいえ</label><br><br>
+        <div class="radio-group-inline">
+          <input id="a1_yes" type="radio" name="a1" value="yes" onclick="toggleExtra(false)"><label for="a1_yes">はい</label>
+          <input id="a1_no" type="radio" name="a1" value="no" onclick="toggleExtra(true)"><label for="a1_no">いいえ</label>
+        </div>
+        <br>
 
         <div id="extra_questions" class="hidden">
           <label>性別を教えてください。</label><br>
-          <input type="radio" name="gender" value="male">男性<br>
-          <input type="radio" name="gender" value="female">女性<br>
-          <input type="radio" name="gender" value="other">答えたくない<br><br>
+          <div class="radio-group-inline">
+            <input id="gender_male" type="radio" name="gender" value="male"><label for="gender_male">男性</label>
+            <input id="gender_female" type="radio" name="gender" value="female"><label for="gender_female">女性</label>
+            <input id="gender_other" type="radio" name="gender" value="other"><label for="gender_other">答えたくない</label>
+          </div>
+          <br>
 
           <label>年齢を教えてください。</label><br>
           <select name="age">
@@ -41,42 +54,60 @@
         </div>
 
         <label for="a2">2. アプリのデザインや操作性は使いやすかったですか？</label><br>
-        <input id="a2_yes" type="radio" name="a2" value="yes"><label for="a2_yes">はい</label>
-        <input id="a2_no" type="radio" name="a2" value="no"><label for="a2_no">いいえ</label><br><br>
+        <div class="radio-group-inline">
+          <input id="a2_yes" type="radio" name="a2" value="yes"><label for="a2_yes">はい</label>
+          <input id="a2_no" type="radio" name="a2" value="no"><label for="a2_no">いいえ</label>
+        </div>
+        <br>
 
         <label for="a3">3. 診断結果は、自分に当てはまると感じましたか？</label><br>
-        <input id="a3_yes" type="radio" name="a3" value="yes"><label for="a3_yes">はい</label>
-        <input id="a3_no" type="radio" name="a3" value="no"><label for="a3_no">いいえ</label><br><br>
+        <div class="radio-group-inline">
+          <input id="a3_yes" type="radio" name="a3" value="yes"><label for="a3_yes">はい</label>
+          <input id="a3_no" type="radio" name="a3" value="no"><label for="a3_no">いいえ</label>
+        </div>
+        <br>
 
         <label for="a4">4. 診断結果を、今後の進路や自己分析に役立てたいと思いますか？</label><br>
-        <input id="a4_yes" type="radio" name="a4" value="yes"><label for="a4_yes">はい</label>
-        <input id="a4_no" type="radio" name="a4" value="no"><label for="a4_no">いいえ</label><br><br>
+        <div class="radio-group-inline">
+          <input id="a4_yes" type="radio" name="a4" value="yes"><label for="a4_yes">はい</label>
+          <input id="a4_no" type="radio" name="a4" value="no"><label for="a4_no">いいえ</label>
+        </div>
+        <br>
 
         <label for="a5">5. このアプリを友人に薦めたいと思いますか？</label><br>
-        <input id="a5_yes" type="radio" name="a5" value="yes"><label for="a5_yes">はい</label>
-        <input id="a5_no" type="radio" name="a5" value="no"><label for="a5_no">いいえ</label><br><br>
+        <div class="radio-group-inline">
+          <input id="a5_yes" type="radio" name="a5" value="yes"><label for="a5_yes">はい</label>
+          <input id="a5_no" type="radio" name="a5" value="no"><label for="a5_no">いいえ</label>
+        </div>
+        <br>
 
         <label for="a6">6. アプリの改善点や、今後追加してほしい機能があれば教えてください。</label><br>
-        <textarea name="message" rows="7" cols="80" id=”message”></textarea><br><br>
+        <textarea name="message" rows="7" cols="80" id="message"></textarea><br><br>
 
-        <label for="a7">7. 今回サーバー提供をしていただいているさくらインターネットさんを<br>聞いたことはありますか？</label><br>
-        <input id="a7_yes" type="radio" name="a7" value="yes" onclick="toggleSakura(true)"><label for="a7_yes">はい</label>
-        <input id="a7_no" type="radio" name="a7" value="no" onclick="toggleSakura(false)"><label for="a7_no">いいえ</label><br><br>
+        <label for="a7">7. 今回サーバー提供をしていただいているさくらインターネット(株)さんを<br>聞いたことはありますか？</label><br>
+        <div class="radio-group-inline">
+          <input id="a7_yes" type="radio" name="a7" value="yes" onclick="toggleSakura(true)"><label for="a7_yes">はい</label>
+          <input id="a7_no" type="radio" name="a7" value="no" onclick="toggleSakura(false)"><label for="a7_no">いいえ</label>
+        </div>
+        <br>
 
         <div id="sakura_followup" class="hidden">
-          <label>さくらインターネットさんを利用したことがありますか？</label><br>
-          <input type="radio" name="a7_1" value="yes">はい
-          <input type="radio" name="a7_1" value="no">いいえ<br><br>
-          <label>感想をお聞かせください（料金、スペックなど）</label><br>
+          <label>さくらインターネット(株)さんを利用したことがありますか？</label><br>
+          <div class="radio-group-inline">
+            <input id="a7_1_yes" type="radio" name="a7_1" value="yes"><label for="a7_1_yes">はい</label>
+            <input id="a7_1_no" type="radio" name="a7_1" value="no"><label for="a7_1_no">いいえ</label>
+          </div>
+          <br>
+          <label>性格診断の感想をお聞かせください（料金、スペックなど）</label><br>
           <textarea name="a7_2" rows="5" cols="80" placeholder="例：料金が手頃で、スペックも十分でした"></textarea><br><br>
         </div>
 
-        <button type="submit">診断を見る →</submit>
+        <button type="submit">診断を見る →</button>
       </form>
       </div>
     </div>
-   </div>
-   <script>
+    </div>
+    <script>
       function toggleExtra(show) {
         const extra = document.getElementById('extra_questions');
         extra.classList.toggle('hidden', !show);
@@ -86,24 +117,6 @@
         const sakura = document.getElementById('sakura_followup');
         sakura.classList.toggle('hidden', !show);
       }
-
     </script>
 </body>
 </html>
-
-<!-- アンケートの質問内容
-1. 国際電子ビジネス専門学校の在校生ですか　yes or no　
-noの場合、性別、年代、職業を教えてください。
-2. アプリのデザインや操作性は使いやすかったですか？
-3. 診断結果は、自分に当てはまると感じましたか？
-4. 診断結果を、今後の進路や自己分析に役立てたいと思いますか？
-5. このアプリを友人に薦めたいと思いますか？
-6. アプリの改善点や、今後追加してほしい機能があれば教えてください。
-7. 今回サーバー提供をしていただいているさくらインターネットさんを聞いたことがあるか
-
-　　　yes or no
-
-　（yesのみ）利用したことありますか　yes or no
-
-　（yesのみ）感想をお聞かせください、料金、スペック 
--->
