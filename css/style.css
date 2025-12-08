@@ -28,7 +28,7 @@ button[type="submit"] {
 
 .button:hover,
 button[type="submit"]:hover {
-  background-color: rgba(64, 146, 184, 0.3);
+  background-color: rgb(46, 109, 138);
   transform: scale(1.05);
 }
 
