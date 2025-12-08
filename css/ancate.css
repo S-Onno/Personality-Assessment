@@ -1,0 +1,223 @@
+/*
+ * ancate.css: アンケートフォームページスタイル
+ */
+
+/* === 1. 基本設定とリセット === */
+:root {
+    --color-primary: #1976d2; /* 画像に合わせた青色系 */
+    --color-background: #f4f7f9;
+    --color-card-bg: #fff;
+    --color-text: #333;
+    --color-border-default: #ddd;
+    --color-hover-bg: #f5f5f5;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: system-ui, -apple-system, "Helvetica Neue", "Noto Sans JP", sans-serif;
+    padding: 20px 16px 40px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.center-content {
+    width: 100%;
+    max-width: 700px; /* PCでの最大幅を制限 */
+}
+
+/* === 2. 質問カード (Card) === */
+.card {
+    background: var(--color-card-bg);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+/* フォーム要素のグループ化 */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 質問間の間隔 */
+}
+
+label[for^="a"] {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+
+/* === 3. ラジオボタン/チェックボックスのカスタムデザイン === */
+
+/* 全てのラジオボタン/チェックボックスを非表示にする */
+input[type="radio"],
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ラベル全体をボタン化するためのスタイル */
+/* Q1, Q2-Q5, Q7の選択肢をターゲット */
+label[for^="a1_"], 
+label[for^="a2_"], 
+label[for^="a3_"], 
+label[for^="a4_"], 
+label[for^="a5_"], 
+label[for^="a7_"] {
+    display: block; /* 選択肢を縦に並べる */
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 8px;
+    border: 1px solid var(--color-border-default);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    font-weight: 400; /* 選択肢のテキストは太字にしない */
+    position: relative;
+    padding-left: 50px; /* カスタムラジオボタン用のスペース */
+    background: var(--color-card-bg);
+}
+
+/* 選択肢ボタン内のテキストを調整 */
+.card > label {
+    font-weight: 400; 
+}
+
+/* ホバー時のスタイル */
+label[for^="a1_"]:hover, 
+label[for^="a2_"]:hover,
+label[for^="a3_"]:hover,
+label[for^="a4_"]:hover,
+label[for^="a5_"]:hover,
+label[for^="a7_"]:hover {
+    background-color: var(--color-hover-bg);
+}
+
+/* 選択された時のスタイル */
+input[type="radio"]:checked + label {
+    background-color: #e0f0ff; /* 薄い青の背景 */
+    border-color: var(--color-primary);
+    color: #000;
+    font-weight: 500;
+}
+
+/* カスタムラジオボタンの見た目 */
+label[for^="a1_"]::before,
+label[for^="a2_"]::before,
+label[for^="a3_"]::before,
+label[for^="a4_"]::before,
+label[for^="a5_"]::before,
+label[for^="a7_"]::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+/* 選択された時の内側の円 */
+input[type="radio"]:checked + label::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+}
+
+/* === 4. 追加質問 (Extra Questions) のスタイル === */
+#extra_questions, #sakura_followup {
+    padding: 15px;
+    border-left: 5px solid #ccc;
+    background: #fcfcfc;
+    border-radius: 5px;
+}
+
+#extra_questions label, #sakura_followup label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* 性別の選択肢の親要素をターゲットにする */
+#extra_questions > .radio-group-inline {
+    /* Flexboxコンテナ内のアイテムを中央に揃える */
+    justify-content: center; 
+    /* 横並びボタンが画面幅いっぱいに広がらないように幅を調整 (必須ではないが、画像に近づく) */
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 性別のラジオボタンのラベル（ボタン）の幅を固定または制限する */
+#extra_questions .radio-group-inline label {
+    flex-grow: 0; /* 均等な幅を解除 */
+    flex-shrink: 0; 
+    padding: 10px 18px; /* パディングでボタンサイズを調整 */
+}
+
+/* テキスト入力・選択ボックスのスタイル */
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+textarea {
+    resize: vertical; /* 縦方向のみリサイズ可能 */
+    min-height: 100px;
+}
+
+/* 条件分岐内のラジオボタンのラベル (簡易的なもの) */
+#extra_questions input[type="radio"] + label,
+#sakura_followup input[type="radio"] + label {
+    display: inline-block;
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    transition: background-color 0.2s;
+}
+
+#extra_questions input[type="radio"]:checked + label,
+#sakura_followup input[type="radio"]:checked + label {
+    background: #e0f0ff;
+    border-color: var(--color-primary);
+}
+

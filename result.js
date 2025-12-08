@@ -250,9 +250,9 @@ function displayResult(typeId) {
 }
 
 // 実際の呼び出し
-displayResult('infra_onpre');
+// displayResult('infra_onpre');
 //displayResult('infra_cld');
-//displayResult('infra_hyd');
+// displayResult('infra_hyd');
 
 //displayResult('eng_frt');
 //displayResult('eng_bck');
@@ -266,3 +266,16 @@ displayResult('infra_onpre');
 //displayResult('net_opt');
 //displayResult('net_swh');
 
+window.addEventListener('DOMContentLoaded', () => {
+    // question.html で保存した ID を取得
+    const typeId = sessionStorage.getItem('resultTypeId');
+
+    if (!typeId) {
+        console.error('sessionStorage に resultTypeId が見つかりません。');
+        // フォールバック：何かデフォルトを表示したい場合
+        displayResult('infra_onpre');
+        return;
+    }
+
+    displayResult(typeId);
+});
