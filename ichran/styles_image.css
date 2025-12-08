@@ -1,3 +1,4 @@
+/* Reset & Base -------------------------------------------------- */
 * {
     box-sizing: border-box;
 }
@@ -13,7 +14,7 @@ header,
 footer {
     text-align: center;
     background-color: #1f6feb;
-    color: #ffffff;
+    color: #fff;
     padding: 24px 16px;
 }
 
@@ -23,6 +24,7 @@ footer p {
     font-weight: 600;
 }
 
+/* Layout -------------------------------------------------- */
 .type-container {
     max-width: 960px;
     margin: 0 auto;
@@ -43,12 +45,6 @@ footer p {
     display: flex;
     gap: 16px;
     overflow-x: auto;
-    padding-bottom: 8px;
-    scrollbar-width: thin;
-}
-
-.horizontal-scroll-wrapper::-webkit-scrollbar {
-    height: 8px;
 }
 
 .horizontal-scroll-wrapper::-webkit-scrollbar-thumb {
@@ -56,34 +52,21 @@ footer p {
     border-radius: 999px;
 }
 
-.horizontal-scroll-wrapper::-webkit-scrollbar-track {
-    background-color: rgba(15, 23, 42, 0.08);
-    border-radius: 999px;
-}
-
+/* Cards -------------------------------------------------- */
 .type-card {
-    flex: 0 0 auto;
-    width: 220px;
+    flex: 1 1 calc(33.333% - 10.667px);
     padding: 16px;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-    
-    display: flex;
-    /* ↓↓↓ この行を追加して縦並びにする ↓↓↓ */
-    flex-direction: column; 
-    align-items: center; 
-}
-    /* flex: 0 0 auto; もともとの.type-cardの中身
-    width: 220px;
-    padding: 16px;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 16px;
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center; */
-
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
 .type-card img {
     max-width: 100%;
@@ -91,6 +74,25 @@ footer p {
     display: block;
 }
 
+.type-card:hover {
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Text inside cards */
+.type-card .type-name {
+    margin: 8px 0 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    color: #1f2933;
+}
+
+.type-card p {
+    margin: 0;
+}
+
+/* Button -------------------------------------------------- */
 .home-button-area {
     display: flex;
     justify-content: center;
@@ -105,7 +107,7 @@ footer p {
     padding: 14px 22px;
     border-radius: 999px;
     background-color: #0b3d91;
-    color: #ffffff;
+    color: #fff;
     text-decoration: none;
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -117,9 +119,35 @@ footer p {
     transform: translateY(-2px);
 }
 
-@media (max-width: 600px) {
+/* Responsive -------------------------------------------------- */
+@media (max-width: 768px) {
+    .horizontal-scroll-wrapper {
+        overflow-x: hidden;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 0;
+    }
+
     .type-card {
-        width: 180px;
+        flex: 1 1 calc(33.333% - 10.667px);
         padding: 12px;
+        font-family: "ヒラギノ角ゴ ProN W3", sans-serif;
+    }
+
+    .type-card img {
+        max-width: 100%;
+    }
+
+    .type-card .card-title {
+        margin-top: 12px;
+        margin-bottom: 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        font-family: "ヒラギノ角ゴ ProN W3", sans-serif;
+    }
+
+    .type-card .card-description {
+        font-size: 0.7rem;
     }
 }
