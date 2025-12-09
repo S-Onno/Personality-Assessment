@@ -9,9 +9,10 @@ body {
 }
 
 /* スタートボタン・送信ボタン */
-.start-button,
+/* スタートボタン・送信ボタン */
+.button,
 button[type="submit"] {
-  background-color: #4b4a4e;
+  background-color: #67b0e9fa;
   color: white;
   padding: 12px 15px;
   font-size: 1.2em;
@@ -20,11 +21,14 @@ button[type="submit"] {
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, transform 0.2s;
+
+  /*  追加・修正: <a>タグがtransformやpaddingを正しく適用できるようにする */
+  display: inline-block; 
 }
 
-.start-button:hover,
+.button:hover,
 button[type="submit"]:hover {
-  background-color: #6c6a6f;
+  background-color: rgb(46, 109, 138);
   transform: scale(1.05);
 }
 
