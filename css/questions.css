@@ -14,22 +14,48 @@
         margin: 0;
         background: #f4f4f4;
         font-family: system-ui, -apple-system, "Helvetica Neue", "Noto Sans JP", sans-serif;
-        padding: 72px 16px 88px;
+        padding: 28px 16px 88px;
       }
 
       /* 進捗ゲージ（画面上部に固定） */
       #progress-container {
-        width: min(90%, 640px);
-        height: 24px;
-        background: #e5e5e5;
-        border-radius: 12px;
-        overflow: hidden;
-        position: fixed;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 9999;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+          /* (追従しない設定を維持) */
+          position: static; 
+          top: auto;
+          left: auto;
+          transform: none;
+          
+          width: min(90%, 640px);
+          height: 24px;
+          background: #e5e5e5;
+          border-radius: 12px;
+          overflow: hidden;
+          
+          /* コンテンツの流れに戻したため、flexboxで内部配置を調整 */
+          display: flex; /* ★ 追加: 内部要素の配置を制御 */
+          align-items: center; /* ★ 追加: 垂直方向中央寄せ */
+          justify-content: flex-start; /* ★ 既存のプログレスバーの左寄せを維持 */
+          position: relative; /* ★ 追加: 子要素（#question-count）の絶対配置の基準にする */
+          
+          margin: 30px auto 18px auto; 
+          z-index: auto; 
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+
+      #question-count {
+          /* プログレスバーの右下に絶対配置 */
+          position: absolute;
+          right: 12px; /* 右端からの余白 */
+          color: #666; /* 文字色 */
+          font-size: 0.8rem; /* 文字サイズ */
+          font-weight: 600;
+          white-space: nowrap;
+          /* プログレスバーの高さ（24px）の中央に配置 */
+          line-height: 24px; 
+          z-index: 10000; /* プログレスバーより手前に表示 */
+          
+          /* プログレスバーの青い部分（#progress-bar）に重なる場合は、
+            文字が見えるように影（text-shadow）や色を調整してください */
       }
 
       #progress-bar {
@@ -65,23 +91,6 @@
         margin: 0;
       }
 
-      .clear-selection {
-        display: none;
-        font-size: 0.85rem;
-        color: #666;
-        border: 1px solid #ccc;
-        background: #f5f5f5;
-        cursor: pointer;
-        padding: 6px 10px;
-        border-radius: 8px;
-        white-space: nowrap;
-      }
-
-      .clear-selection.visible {
-        display: inline-flex;
-        align-items: center;
-      }
-
       .option-btn {
         width: 100%;
         padding: 14px 16px;
@@ -103,20 +112,34 @@
       }
 
       #submitBtn {
-        position: fixed;
-        right: 16px;
-        bottom: 16px;
-        padding: 16px 24px;
-        background: #67b0e9fa;
-        color: #fff;
-        border: none;
-        border-radius: 12px;
-        font-size: 1.05rem;
-        font-weight: 700;
-        cursor: pointer;
-        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.22);
+          /* position: fixed; を解除し、通常のブロック要素にする */
+          position: static; 
+          
+          /* 追従を解除したため、fixed関連のプロパティはすべて削除 */
+          left: auto;
+          right: auto;
+          bottom: auto;
+          transform: none; 
+          
+          /* ボタンを中央に配置する */
+          display: block; /* block要素にして幅100%を許可 */
+          width: min(90%, 600px); /* 質問カードに合わせた幅制限を設ける */
+          margin: 30px auto 50px auto; /* 上下左右の余白を設定し中央に配置 */
+
+          /* その他のスタイルは維持 */
+          padding: 16px 24px;
+          background: #67b0e9fa;
+          color: #fff;
+          border: none;
+          border-radius: 12px;
+          font-size: 1.05rem;
+          font-weight: 700;
+          cursor: pointer;
+          box-shadow: 0 5px 14px rgba(0, 0, 0, 0.22);
       }
 
+      /* :active スタイルも追従に合わせて修正 */
       #submitBtn:active {
-        transform: translateY(1px);
+          /* 押し込み時の transform は不要 */
+          transform: translateY(1px); 
       }
