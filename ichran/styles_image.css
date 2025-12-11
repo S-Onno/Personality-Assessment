@@ -1,3 +1,5 @@
+/*style_image.css*/
+/* Reset & Base -------------------------------------------------- */
 * {
     box-sizing: border-box;
 }
@@ -13,7 +15,7 @@ header,
 footer {
     text-align: center;
     background-color: #1f6feb;
-    color: #ffffff;
+    color: #fff;
     padding: 24px 16px;
 }
 
@@ -23,6 +25,7 @@ footer p {
     font-weight: 600;
 }
 
+/* Layout -------------------------------------------------- */
 .type-container {
     max-width: 960px;
     margin: 0 auto;
@@ -43,12 +46,12 @@ footer p {
     display: flex;
     gap: 16px;
     overflow-x: auto;
-    padding-bottom: 8px;
-    scrollbar-width: thin;
+    /* スクロールバーを微調整 */
+    padding-bottom: 8px; 
 }
 
 .horizontal-scroll-wrapper::-webkit-scrollbar {
-    height: 8px;
+    height: 8px; /* 横スクロールバーの高さ */
 }
 
 .horizontal-scroll-wrapper::-webkit-scrollbar-thumb {
@@ -56,34 +59,23 @@ footer p {
     border-radius: 999px;
 }
 
-.horizontal-scroll-wrapper::-webkit-scrollbar-track {
-    background-color: rgba(15, 23, 42, 0.08);
-    border-radius: 999px;
-}
-
+/* Cards -------------------------------------------------- */
 .type-card {
     flex: 1 1 calc(33.333% - 10.667px);
-    width: auto;
+    /* 縮小しないように設定（PCでも横並び維持） */
+    min-width: 200px; 
     padding: 16px;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 16px;
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-    
     display: flex;
-    /* ↓↓↓ この行を追加して横並びにする ↓↓↓ */
     flex-direction: column;
-    align-items: center; 
-}
-    /* flex: 0 0 auto; もともとの.type-cardの中身
-    width: 220px;
-    padding: 16px;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-    display: flex;
     align-items: center;
-    justify-content: center; */
-
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
 .type-card img {
     max-width: 100%;
@@ -91,6 +83,31 @@ footer p {
     display: block;
 }
 
+.type-card:hover {
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Text inside cards */
+.type-card .type-name {
+    margin: 8px 0 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    color: #1f2933;
+}
+
+.type-card p {
+    margin: 0;
+}
+
+.type-card .type-description {
+    margin: 12px 0 0; /* 少し余白を追加 */
+    text-align: center;
+    line-height: 1.6; /* 読みやすい行間 */
+}
+
+/* Button -------------------------------------------------- */
 .home-button-area {
     display: flex;
     justify-content: center;
@@ -105,7 +122,7 @@ footer p {
     padding: 14px 22px;
     border-radius: 999px;
     background-color: #0b3d91;
-    color: #ffffff;
+    color: #fff;
     text-decoration: none;
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -117,72 +134,60 @@ footer p {
     transform: translateY(-2px);
 }
 
-@media (max-width: 600px) {
-    .type-card {
-        width: 180px;
-        padding: 12px;
-    }
+/* --------------------------------------------------
+   表示切り替え用設定 (PC/SP出し分け)
+-------------------------------------------------- */
+
+/* デフォルト（PC）ではスマホ用テキストを消す */
+.sp-text {
+    display: none;
+}
+.pc-text {
+    display: block;
 }
 
-/* ここから下はスマホで横スクロールしないでやろうとしてる設定 */
-
+/* Responsive (スマホ用: 768px以下) ------------------- */
 @media (max-width: 768px) {
-    /* 1. スクロールラッパーの修正 */
-    .horizontal-scroll-wrapper {
-        /* 横スクロールを解除（念のため） */
-        overflow-x: hidden; 
-        /* カードを折り返さないことを確認 */
-        flex-wrap: nowrap; 
-        /* カード間のギャップを維持 */
-        gap: 8px; /* 画面が狭いので、ギャップを少し狭くします */
-        
-        /* カードが画面の端に張り付かないように、左右に余白を設定 */
-        padding-left: 16px; 
-        padding-right: 16px;
+    
+    /* PC用テキストを消して、スマホ用を表示 */
+    .pc-text {
+        display: none;
+    }
+    .sp-text {
+        display: block;
     }
 
-    /* 2. カードの修正 */
+    .horizontal-scroll-wrapper {
+        overflow-x: hidden; /* 横スクロール無効化 */
+        flex-wrap: wrap;    /* 折り返し有効化 */
+        gap: 16px;
+        padding: 0;
+    }
+
     .type-card {
-        /* 3つのカードが均等に並ぶように幅を設定 */
-        /* カード間のギャップ（8px）とパディング（左右16px）を考慮し、約1/3の幅に設定 */
-        width: calc((100vw - 32px - 16px) / 3); 
-        /* flex-shrink: 0; を設定することで、幅が縮むのを防ぎます */
-        flex-shrink: 0;
-        padding: 8px; /* カード内のパディングを小さくする */
+        flex: 1 1 calc(33.333% - 10.667px); /* 3列維持 */
+        min-width: auto; /* 最小幅を解除 */
+        padding: 12px;
         font-family: "ヒラギノ角ゴ ProN W3", sans-serif;
     }
-    
-    /* 3. 画像の修正 */
+
     .type-card img {
-        /* 画像を小さくして、カードの幅に収まるようにします */
-        max-width: 100%; 
-        height: auto;
+        max-width: 100%;
     }
 
-    /* 4. タイトルや説明文の文字サイズ調整 (オプション) */
-    .type-card .card-title {
-    margin-top: 12px; 
-    margin-bottom: 4px; 
-    font-size: 1.0rem;
-    font-weight: 600;
-    text-align: center;
-
-    /* ↓↓↓ ここに新しいフォントファミリーを追記・変更 ↓↓↓ */
-    font-family: "ヒラギノ角ゴ ProN W3", sans-serif;
-
-        /* font-size: 0.8rem;
-        margin-top: 8px; 
-        margin-bottom: 2px; */
+    /* クラス名を修正しました: .card-title -> .type-name */
+    .type-card .type-name {
+        margin-top: 12px;
+        margin-bottom: 4px;
+        font-size: 0.9rem; /* 少し小さめに */
+        font-weight: 600;
+        text-align: center;
+        font-family: "ヒラギノ角ゴ ProN W3", sans-serif;
     }
 
-    .type-card .card-description {
-        font-size: 0.7rem; /* 説明文をさらに縮小 */
-    }
-    
-    /* 5. type-containerの修正（左右のパディングを削除） */
-    .type-container {
-        /* カード自体に左右のパディングを定義するため、親要素のパディングをリセット */
-        padding-left: 0;
-        padding-right: 0;
+    /* クラス名を修正しました: .card-description -> .type-description */
+    .type-card .type-description {
+        font-size: 0.75rem; /* スマホで見やすいサイズ */
+        line-height: 1.4;
     }
 }
