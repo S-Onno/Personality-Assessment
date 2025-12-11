@@ -126,6 +126,8 @@
           width: min(90%, 600px); /* 質問カードに合わせた幅制限を設ける */
           margin: 30px auto 50px auto; /* 上下左右の余白を設定し中央に配置 */
 
+          transition: background-color 0.3s ease, transform 0.2s ease;
+
           /* その他のスタイルは維持 */
           padding: 16px 24px;
           background: #67b0e9fa;
@@ -143,3 +145,11 @@
           /* 押し込み時の transform は不要 */
           transform: translateY(1px); 
       }
+
+      /* アンケートへ進むボタンのホバーエフェクト */
+      #submitBtn:hover {
+          background: #5097d7; 
+          transform: scale(1.05); 
+          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      }
+      
