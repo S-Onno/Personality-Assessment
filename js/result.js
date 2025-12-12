@@ -267,15 +267,27 @@ function displayResult(typeId) {
 //displayResult('net_swh');
 
 window.addEventListener('DOMContentLoaded', () => {
-    // question.html で保存した ID を取得
-    const typeId = sessionStorage.getItem('resultTypeId');
-
-    if (!typeId) {
-        console.error('sessionStorage に resultTypeId が見つかりません。');
-        // フォールバック：何かデフォルトを表示したい場合
-        displayResult('infra_onpre');
-        return;
+    
+    // 1. URLSearchParamsを使って、URLのクエリパラメータから 'id' の値を取得する
+    const urlParams = new URLSearchParams(window.location.search);
+    const idFromUrl = urlParams.get('id'); // 例: 'infra_onpre' または 'eng_frt' が入る
+    
+    let typeIdToDisplay = idFromUrl; // 優先順位1: URLからのID
+    
+    // 2. URLにIDがない場合（診断完了時など）にのみ、sessionStorageを確認する
+    if (!typeIdToDisplay) {
+        typeIdToDisplay = sessionStorage.getItem('resultTypeId'); // 優先順位2: session StorageからのID
+    }
+    
+    // 3. どちらにもIDがない場合
+    if (!typeIdToDisplay) {
+    console.error('表示するタイプIDが見つかりません。');
+    // フォールバック：エラーメッセージを表示するか、デフォルトを表示
+    document.getElementById('result-type-title').textContent = "エラー：表示するデータがありません。";
+    // displayResult('infra_onpre'); // デフォルト表示が必要ならコメントアウトを解除
+    return;
     }
 
-    displayResult(typeId);
+    // 4. 取得したIDで結果を表示する
+ displayResult(typeIdToDisplay);
 });
