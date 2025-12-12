@@ -1,6 +1,6 @@
-/*style_image.css*/
 /* Reset & Base -------------------------------------------------- */
 * {
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -115,23 +115,20 @@ footer p {
 }
 
 .home-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 220px;
-    padding: 14px 22px;
-    border-radius: 999px;
-    background-color: #0b3d91;
-    color: #fff;
+    background-color: #67b0e9fa;
+    color: white;
+    padding: 12px 15px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
     text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .home-button:hover {
-    background-color: #0a3380;
-    transform: translateY(-2px);
+    background-color: rgb(46, 109, 138);
+    transform: scale(1.05);
 }
 
 /* --------------------------------------------------
@@ -158,36 +155,47 @@ footer p {
     }
 
     .horizontal-scroll-wrapper {
-        overflow-x: hidden; /* 横スクロール無効化 */
-        flex-wrap: wrap;    /* 折り返し有効化 */
-        gap: 16px;
-        padding: 0;
+        /* ▼ ここを変更: 横並び解除、縦並び(column)にする */
+        display: flex;
+        flex-direction: column; 
+        align-items: center; /* カードを中央に寄せる */
+        gap: 24px;           /* カード同士の間隔を少し広げる */
+        padding: 0 0 24px 0;
+        overflow-x: visible; /* 横スクロール無効化 */
     }
 
     .type-card {
-        flex: 1 1 calc(33.333% - 10.667px); /* 3列維持 */
-        min-width: auto; /* 最小幅を解除 */
-        padding: 12px;
+        /* ▼ ここを変更: 3列設定を解除し、1枚の幅を確保 */
+        flex: 0 0 auto;
+        width: 100%;       /* 親要素に対して100% */
+        max-width: 360px;  /* ただし横に広がりすぎないように制限（画像1枚目の雰囲気に近づける） */
+        min-width: auto;   
+        
+        /* 見た目の調整 */
+        margin: 0 auto;    /* 中央配置 */
+        padding: 24px;     /* 内側の余白を少しゆったりに */
         font-family: "ヒラギノ角ゴ ProN W3", sans-serif;
     }
 
     .type-card img {
         max-width: 100%;
+        height: auto;
+        /* 画像の下に少し余白を入れるとバランスが良いです */
+        margin-bottom: 12px; 
     }
 
-    /* クラス名を修正しました: .card-title -> .type-name */
+    /* タイトル */
     .type-card .type-name {
-        margin-top: 12px;
-        margin-bottom: 4px;
-        font-size: 0.9rem; /* 少し小さめに */
-        font-weight: 600;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        font-size: 1.1rem; /* スマホでも見出しは少し大きく */
+        font-weight: 700;
         text-align: center;
-        font-family: "ヒラギノ角ゴ ProN W3", sans-serif;
     }
 
-    /* クラス名を修正しました: .card-description -> .type-description */
+    /* 説明文 */
     .type-card .type-description {
-        font-size: 0.75rem; /* スマホで見やすいサイズ */
-        line-height: 1.4;
+        font-size: 0.85rem; /* 小さすぎず読みやすいサイズに */
+        line-height: 1.8;   /* 行間を広げて読みやすく */
     }
 }
