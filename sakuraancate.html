@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>IT性格診断(アンケート)</title>
+  <title>IT性格診断(さくらアンケート)</title>
   
   <!-- レスポンス機能の適用 -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -59,53 +59,22 @@
           <input type="text" name="job" size="40" placeholder="例：会社員、学生など"><br><br>
         </div>
 
-        <label for="a2">2. アプリのデザインや操作性は使いやすかったですか？</label><br>
+        <label for="a7">2. 今回サーバー提供をしていただいているさくらインターネット(株)を聞いたことはありますか？</label><br>
         <div class="radio-group-inline">
-          <input id="a2_yes" type="radio" name="a2" value="yes"><label for="a2_yes">はい</label>
-          <input id="a2_no" type="radio" name="a2" value="no"><label for="a2_no">いいえ</label>
-        </div>
-        <br>
-
-        <label for="a3">3. 診断結果は、自分に当てはまると感じましたか？</label><br>
-        <div class="radio-group-inline">
-          <input id="a3_yes" type="radio" name="a3" value="yes"><label for="a3_yes">はい</label>
-          <input id="a3_no" type="radio" name="a3" value="no"><label for="a3_no">いいえ</label>
-        </div>
-        <br>
-
-        <label for="a4">4. 診断結果を、今後の進路や自己分析に役立てたいと思いますか？</label><br>
-        <div class="radio-group-inline">
-          <input id="a4_yes" type="radio" name="a4" value="yes"><label for="a4_yes">はい</label>
-          <input id="a4_no" type="radio" name="a4" value="no"><label for="a4_no">いいえ</label>
-        </div>
-        <br>
-
-        <label for="a5">5. このアプリを友人に薦めたいと思いますか？</label><br>
-        <div class="radio-group-inline">
-          <input id="a5_yes" type="radio" name="a5" value="yes"><label for="a5_yes">はい</label>
-          <input id="a5_no" type="radio" name="a5" value="no"><label for="a5_no">いいえ</label>
-        </div>
-        <br>
-
-        <label for="a6">6. アプリの改善点や、今後追加してほしい機能があれば教えてください。</label><br>
-        <textarea name="message" rows="7" cols="80" id="message"></textarea><br><br>
-
-        <label for="a7">7. 今回サーバー提供をしていただいているさくらインターネット(株)を聞いたことはありますか？</label><br>
-        <div class="radio-group-inline">
-          <input id="a7_yes" type="radio" name="a7" value="yes" onclick="toggleSakura(true)"><label for="a7_yes">はい</label>
-          <input id="a7_no" type="radio" name="a7" value="no" onclick="toggleSakura(false)"><label for="a7_no">いいえ</label>
+          <input id="a2_yes" type="radio" name="a2" value="yes" onclick="toggleSakura(true)"><label for="a2_yes">はい</label>
+          <input id="a2_no" type="radio" name="a2" value="no" onclick="toggleSakura(false)"><label for="a2_no">いいえ</label>
         </div>
         <br>
 
         <div id="sakura_followup" class="hidden">
           <label>さくらインターネット(株)を利用したことがありますか？</label><br>
           <div class="radio-group-inline">
-            <input id="a7_1_yes" type="radio" name="a7_1" value="yes"><label for="a7_1_yes">はい</label>
-            <input id="a7_1_no" type="radio" name="a7_1" value="no"><label for="a7_1_no">いいえ</label>
+            <input id="a2_1_yes" type="radio" name="a2_1" value="yes"><label for="a2_1_yes">はい</label>
+            <input id="a2_1_no" type="radio" name="a2_1" value="no"><label for="a2_1_no">いいえ</label>
           </div>
           <br>
-          <label>性格診断の感想をお聞かせください（料金、スペックなど）</label><br>
-          <textarea name="a7_2" rows="5" cols="80" placeholder="例：料金が手頃で、スペックも十分でした"></textarea><br><br>
+          <label>さくらインターネット(株)を利用した際の感想を教えてください。<br>（料金、スペックなど）</label><br>
+          <textarea name="a2_2" rows="5" cols="80" placeholder="例：料金が手頃で、スペックも十分でした"></textarea><br><br>
         </div>
 
         <button type="submit">診断を見る →</button>
