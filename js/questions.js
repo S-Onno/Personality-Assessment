@@ -161,7 +161,7 @@
               // postResult(payload).then(...).catch(...) の部分は削除します。
               
       // ancate.html へ遷移
-      window.location.href = 'ancate.html';
+      window.location.href = 'sakuraancate.html';
       });
 
 // 質問に回答するたびにこの関数を呼び出す
