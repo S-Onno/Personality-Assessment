@@ -11,7 +11,8 @@ body {
 /* スタートボタン・送信ボタン */
 /* スタートボタン・送信ボタン */
 .button,
-button[type="submit"] {
+button[type="submit"],
+a {
   background-color: #67b0e9fa;
   color: white;
   padding: 12px 15px;
@@ -27,7 +28,8 @@ button[type="submit"] {
 }
 
 .button:hover,
-button[type="submit"]:hover {
+button[type="submit"]:hover,
+a:hover {
   background-color: rgb(46, 109, 138);
   transform: scale(1.05);
 }
@@ -121,6 +123,44 @@ p {
   font-weight: bold;
   font-size: 1.2em;
 }
+
+
+/* アンケート協力ありがとうページ */
+.thank-you-container {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .thank-you-container h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .thank-you-container p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .thank-you-container .button-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #007bff; /* 例: 青色 */
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .thank-you-container .button-link:hover {
+            background-color: #0056b3;
+        }
 
 
 

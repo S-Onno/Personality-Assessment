@@ -26,7 +26,7 @@
   <div class="wrapper">
     <div class="center-content">
       <div class="card">
-      <form action="result.html" method="post">
+      <form action="result.html" method="post" id="optional_survey_form">
 
         <label for="a1">1. アプリのデザインや操作性は使いやすかったですか？</label><br>
         <div class="radio-group-inline">
@@ -60,9 +60,7 @@
         <textarea name="message" rows="7" cols="80" id="message"></textarea><br><br>
 
 
-        
-        <a href="ich.html" class="button">性格一覧 →</a>
-        <a href="index.html" class="button">トップページに戻る →</a>
+        <a href="thanks.html" id="submit_optional_survey">アンケートを送信 →</button>
         
       </form>
       </div>
@@ -80,5 +78,8 @@
         sakura.classList.toggle('hidden', !show);
       }
     </script>
+
+    <script src="js/ancate.js"></script>
+
 </body>
 </html>

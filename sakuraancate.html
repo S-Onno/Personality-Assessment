@@ -26,7 +26,7 @@
   <div class="wrapper">
     <div class="center-content">
       <div class="card">
-      <form action="result.html" method="post">
+      <form action="result.html" method="post" id="sakura_form">
 
         <label for="a1">1. 国際電子ビジネス専門学校の在校生ですか？</label><br>
         <div class="radio-group-inline">
@@ -77,8 +77,8 @@
           <textarea name="a2_2" rows="5" cols="80" placeholder="例：料金が手頃で、スペックも十分でした"></textarea><br><br>
         </div>
 
-        <button type="submit">診断を見る →</button>
-      </form>
+        <button type="submit" id="submit_sakura">診断を見る →</button>
+        </form>
       </div>
     </div>
     </div>
@@ -93,5 +93,7 @@
         sakura.classList.toggle('hidden', !show);
       }
     </script>
+
+    <script src="js/ancate.js"></script>
 </body>
 </html>
