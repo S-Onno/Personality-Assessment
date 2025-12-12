@@ -249,22 +249,6 @@ function displayResult(typeId) {
 
 }
 
-// 実際の呼び出し
-// displayResult('infra_onpre');
-//displayResult('infra_cld');
-// displayResult('infra_hyd');
-
-//displayResult('eng_frt');
-//displayResult('eng_bck');
-//displayResult('eng_fsk');
-
-//displayResult('sec_fwl');
-//displayResult('sec_mal');
-//displayResult('sec_zrt');
-
-//displayResult('net_rtr');
-//displayResult('net_opt');
-//displayResult('net_swh');
 
 window.addEventListener('DOMContentLoaded', () => {
     
@@ -289,5 +273,5 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // 4. 取得したIDで結果を表示する
- displayResult(typeIdToDisplay);
+    displayResult(typeIdToDisplay);
 });

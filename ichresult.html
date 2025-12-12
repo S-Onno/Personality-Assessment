@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title id="page-title">IT性格診断</title>
+
+        <!-- レスポンス機能の適用 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/result.css">
+        <link rel="icon" type="image/png" href="image/logo .png">
+    </head>
+    <body>
+        <div class="header">
+
+        </div>
+        <main>
+            <div id="result-container" class="result-card type-background-color">
+
+                <section class="type-header">
+                    <p class="type-classification" id="result-classtype">グループ分け</p>
+                    <h1 id="result-type-title">診断結果を読み込み中．．．</h1>
+                </section>
+
+                <section id="result-image-section">
+                    <img id="result-image" src="" alt="アイコン" class="type-icon">
+                </section>
+
+                <section id="result-summary-section">
+                    <h2 id="result-word">一言</h2>
+                    <p id="result-summary-text">タイプ要約</p>
+                </section>
+
+                <section id="details-section" class="details-grid">
+                    <article class="trait-article strengths-card">
+                        <h3 class="trait-title">長所</h3>
+                        <ul id="strengths-list"></ul>
+                    </article>
+
+                    <article class="trait-article weaknesses-card">
+                        <h3 class="trait-title">短所</h3>
+                        <ul id="weaknesses-list"></ul>
+                    </article>
+
+                    <article class="trait-article environment-card full-width-card">
+                        <h3 class="trait-title">適した環境</h3>
+                        <ul id="environment-list"></ul>
+                    </article>
+
+                </section>
+                
+                
+                <br><br>
+                <a href="ich.html" class="button">　IT性格一覧 →　　　</a>
+                <br><br>
+                <a href="index.html" class="button">トップページに戻る →</a>
+                
+        </main>
+
+        <script src="js/result.js"></script>
+
+        <!-- <footer>
+        <p>© 2024 情報スペシャリスト科3-4B</p>
+        </footer> -->
+    </body>
+</html>
