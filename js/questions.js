@@ -141,53 +141,27 @@
       }
 
       document.getElementById('submitBtn').addEventListener('click', () => {
-        if (Object.keys(answers).length !== totalQuestions) {
-          alert('未回答の質問があります。すべて回答してください。');
-          return;
-        }
+      if (Object.keys(answers).length !== totalQuestions) {
+      alert('未回答の質問があります。すべて回答してください。');
+      return;
+      }
 
-        const { mainType, subResult, avg, score } = calculateResult();
-        const subLabelEn = resolveSubtypeEnglish(mainType, subResult);
-        const typeLabelEn = resolveTypeEnglish(mainType);
+      const { mainType, subResult, avg, score } = calculateResult();
+      const typeId = resolveTypeId(mainType, subResult);
+      
+      if (!typeId) {
+      alert('結果の判定に失敗しました。もう一度お試しください。');
+      return;
+      }
 
-        const typeId = resolveTypeId(mainType, subResult);
-  if (!typeId) {
-    alert('結果の判定に失敗しました。もう一度お試しください。');
-    return;
-  }
+      // 診断結果IDを保存 (result.htmlで必要)
+      sessionStorage.setItem('resultTypeId', typeId);
 
-        const payload = {
-          type: mainType,
-          typeLabelEn,
-          sub: subResult,
-          subLabelEn,
-          averageSubScore: avg,
-          totals: score,
-          typeId,
-        };
-        
-        sessionStorage.setItem('resultTypeId', typeId);
-        
-        postResult(payload)
-          .then((response) => {
-            if (response.status === 404) {
-              alert('ページが見つかりません（リンクが存在しません）。');
-              return;
-            }
-            if (!response.ok) {
-              throw new Error('送信に失敗しました');
-            }
-            console.log('結果の送信に成功しました');
-
-            window.location.href = 'result.html';
-          })
-          .catch((err) => {
-            console.error('送信に失敗しました', err);
-            
-          });
-          //直接回答を見に行くなら下のコード
-          window.location.href = 'ancate.html';
-          // window.location.href = 'middle.html';
+      // サーバー通信 (postResult) のブロックを全て削除 
+              // postResult(payload).then(...).catch(...) の部分は削除します。
+              
+      // ancate.html へ遷移
+      window.location.href = 'ancate.html';
       });
 
 // 質問に回答するたびにこの関数を呼び出す
