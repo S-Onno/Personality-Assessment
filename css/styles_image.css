@@ -25,6 +25,10 @@ footer p {
     font-weight: 600;
 }
 
+h2{
+    text-align: center;
+}
+
 /* Layout -------------------------------------------------- */
 .type-container {
     max-width: 960px;
@@ -67,7 +71,7 @@ footer p {
     padding: 16px;
     background-color: #fff;
     border-radius: 16px;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 8px 30px rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,23 +119,20 @@ footer p {
 }
 
 .home-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 220px;
-    padding: 14px 22px;
-    border-radius: 999px;
-    background-color: #0b3d91;
-    color: #fff;
+    background-color: #67b0e9fa;
+    color: white;
+    padding: 12px 15px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
     text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .home-button:hover {
-    background-color: #0a3380;
-    transform: translateY(-2px);
+    background-color: rgb(46, 109, 138);
+    transform: scale(1.05);
 }
 
 /* --------------------------------------------------
