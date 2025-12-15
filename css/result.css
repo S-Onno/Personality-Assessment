@@ -22,8 +22,8 @@
     /* main コンテナの左右の余白を調整 */
     main {
  /* PCのmain設定と競合しないよう、必要であればSPでのみ上書き */
- padding: 20px 10px; 
- }
+    padding: 20px 10px; 
+    }
 }
 
 body {
@@ -36,6 +36,56 @@ main {
     max-width: 900px;
     margin: 40px auto;
     padding: 20px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #000000;
+  height: 100vh;
+
+}
+
+/* スタートボタン・送信ボタン */
+/* スタートボタン・送信ボタン */
+.button,
+button[type="submit"],
+a {
+  background-color: #67b0e9fa;
+  color: white;
+  padding: 12px 15px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
+
+  /*  追加・修正: <a>タグがtransformやpaddingを正しく適用できるようにする */
+    display: inline-block; 
+}
+
+.button:hover,
+button[type="submit"]:hover,
+a:hover {
+    background-color: rgb(46, 109, 138);
+    transform: scale(1.05);
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
 
 
@@ -138,6 +188,13 @@ main {
     display: inline-block;
     width: 1em;
     margin-left: -1em;
+}
+
+.gaiyou-card {
+    background-color: #ddfff7; /* 薄いグレー、またはお好みの色（例: #e6f7ff 薄い青） */
+    border-radius: 8px;        /* 角を丸くする */
+    padding: 20px;             /* 内側の余白を確保（既にtrait-articleで20pxありますが、上書きしても良い） */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 影を少しつける（任意） */
 }
 
 
