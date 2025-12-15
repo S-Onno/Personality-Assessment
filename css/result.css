@@ -123,7 +123,9 @@ main {
 
 #strengths-list li::before, 
 #weaknesses-list li::before,
-#environment-list li::before {
+#environment-list li::before, 
+#goodperson-list li::before, 
+#badperson-list li::before { 
     content: "•";
     color: #4CAF50;
     font-weight: bold;
