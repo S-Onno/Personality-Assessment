@@ -65,8 +65,8 @@ const resultsData = [
         type: 'フロントエンド<br>タイプ',
         word: '結果にこだわる<br>リーダータイプ',
         imagePath: 'image/フロントエンドタイプ.png',
-        summary: '目に見える成果や達成を最優先。チームを引っ張るのが得意で、少し強引でも目標に向かって突き進む。',
-        strengths: '細部の詰めや地道な作業をこだわる。',
+        summary: ['目に見える成果や達成を最優先。チームを引っ張るのが得意で、少し強引でも目標に向かって突き進む。'],
+        strengths: ['細部の詰めや地道な作業をこだわる。'],
         weaknesses: ['細部の詰めや地道な作業を軽視しがち', '結果を急ぎすぎて、人の意見を遮ってしまうことがある'],
         matchType: ['ルータータイプ (ネットワーク)','目標達成への最速チートコード','リーダーが「目標」を宣言すれば、ルーターが感情抜きの最短ルートを瞬時に計算。無駄なくゴールに一直線です。'],
         gaiyou: ['フロントエンド'],
@@ -289,7 +289,13 @@ function displayResult(typeId) {
     if (explanationTitleElement) {
         // H3タグの内容を「[タイプ名]の意味」に書き換える
         // ここでは、改行タグ(<br>)を含んだタイプ名を使って、そのまま「の意味」を追加します。
-        explanationTitleElement.innerHTML = data.type + 'の意味';
+        if (data.gaiyou && data.gaiyou.length > 0) {
+            // data.gaiyou[0] には 'オンプレミス' などが入っている
+            explanationTitleElement.textContent = data.gaiyou[0] + 'の意味';
+        } else {
+            // gaiyouデータがない場合のフォールバック（data.typeを使うなど）
+            explanationTitleElement.innerHTML = data.type + 'の意味';
+        }
     }
     
 
