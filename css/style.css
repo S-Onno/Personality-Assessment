@@ -14,7 +14,7 @@ body {
   padding: 0;
   background: var(--color-background);
   color: var(--color-text-main);
-  height: 100vh;
+  height: 100%;
 
 }
 
