@@ -2,6 +2,12 @@
         /* モバイルでも読みやすいようにやや大きめのベースフォントを設定 */
         font-size: 18px;
         line-height: 1.6;
+
+        --color-primary: #1f6feb;
+        --color-primary-dark: #0b3d91;
+        --color-accent: #67b0e9;
+        --color-background: linear-gradient(180deg, #eef4ff 0%, #ffffff 75%);
+        --color-text-main: #0f172a;
       }
 
       *,
@@ -12,33 +18,42 @@
 
       body {
         margin: 0;
-        background: #f4f4f4;
+        background: var(--color-background);
+        color: var(--color-text-main);
         font-family: system-ui, -apple-system, "Helvetica Neue", "Noto Sans JP", sans-serif;
-        padding: 60px 16px 88px;
+        padding: 120px 16px 88px;
       }
 
       /* 進捗ゲージ（画面上部に固定） */
-        #progress-container {
-            position: fixed;      /* ← 固定表示にする */
-            top: 30px;            /* 画面上からの距離 */
-            left: 50%;            /* 中央寄せ */
-            transform: translateX(-50%); /* 中央寄せの補正 */
+      .progress-surface {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        transform: none;
+        padding: 28px clamp(16px, 6vw, 56px) 20px;
+        background: rgba(255, 255, 255, 0.97);
+        border-radius: 0 0 28px 28px;
+        box-shadow: 0 24px 40px rgba(15, 23, 42, 0.18);
+        z-index: 9998;
+      }
 
-            width: min(90%, 640px);
+      #progress-container {
+            position: relative;
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
             height: 24px;
-            background: #e5e5e5;
+            background: rgba(15, 23, 42, 0.1);
+            border: 1px solid rgba(31, 110, 235, 0.2);
             border-radius: 12px;
             overflow: hidden;
-
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            position: fixed;
-
-            margin: 0;            /* fixed では margin は不要 */
-            z-index: 9999;        /* 前面に出す */
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-        }
+            margin: 0;
+            z-index: 1;
+      }
 
       #question-count {
           /* プログレスバーの右下に絶対配置 */
@@ -59,17 +74,18 @@
       #progress-bar {
         height: 100%;
         width: 0%;
-        background: #67b0e9fa;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
         border-radius: 12px;
         transition: width 0.3s ease;
       }
 
       .card {
         width: min(100%, 720px);
-        background: #fff;
+        border: 1px solid rgba(15, 23, 42, 0.05);
+        background: rgba(255, 255, 255, 0.95);
         padding: 20px;
         border-radius: 14px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
         margin: 18px auto;
         display: flex;
         flex-direction: column;
@@ -87,6 +103,7 @@
         font-size: clamp(1.2rem, 4vw, 1.4rem);
         font-weight: 700;
         margin: 0;
+        color: var(--color-primary-dark);
       }
 
       .option-btn {
@@ -103,8 +120,8 @@
       }
 
       .option-btn.selected {
-        background: #67b0e9fa;
-        border-color: #67b0e9fa;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+        border-color: transparent;
         color: #fff;
         box-shadow: 0 2px 6px rgba(64, 146, 184, 0.3);
       }
@@ -128,9 +145,9 @@
 
           /* その他のスタイルは維持 */
           padding: 16px 24px;
-          background: #67b0e9fa;
+          background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+          border: 1px solid rgba(31, 110, 235, 0.3);
           color: #fff;
-          border: none;
           border-radius: 12px;
           font-size: 1.05rem;
           font-weight: 700;
@@ -146,7 +163,7 @@
 
       /* アンケートへ進むボタンのホバーエフェクト */
       #submitBtn:hover {
-          background: #5097d7; 
+          background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
           transform: scale(1.05); 
           box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
       }
