@@ -76,6 +76,8 @@
         let subResult = 0;
         if (avg >= 2.15) subResult = 2;
         else if (avg >= 1.81) subResult = 1;
+        
+        return { mainType, subResult, avg, score };
         }
 
       function resolveSubtypeEnglish(type, subResult) {
