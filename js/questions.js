@@ -74,11 +74,9 @@
         const avg = mainTotal > 0 ? score[`${mainType}_sub`] / mainTotal : 0;
 
         let subResult = 0;
-        if (avg >= 1.6) subResult = 2;
-        else if (avg >= 1.0) subResult = 1;
-
-        return { mainType, subResult, avg, score };
-      }
+        if (avg >= 2.15) subResult = 2;
+        else if (avg >= 1.81) subResult = 1;
+        }
 
       function resolveSubtypeEnglish(type, subResult) {
         const labels = {
