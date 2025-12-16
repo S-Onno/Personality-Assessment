@@ -20,7 +20,7 @@ body {
 /* メインコンテナ */
 main {
     max-width: 900px;
-    margin: 40px auto;
+    margin: 0px auto;
     padding: 20px;
     background: rgba(255, 255, 255, 0.92);
     border-radius: 16px;
@@ -83,7 +83,6 @@ a:hover {
     margin: 0 auto;
     max-width: 50%;
     border-radius: 16px;
-    background: rgba(103, 176, 233, 0.08);
 }
 
 #result-image {
