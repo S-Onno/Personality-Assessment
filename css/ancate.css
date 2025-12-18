@@ -230,3 +230,12 @@ textarea {
     border-color: var(--color-primary);
 }
 
+.hidden {
+    display: none;
+}
+/* 追加：横並びグループのスタイルを直接記述 */
+.radio-group-inline {
+    display: flex;
+    gap: 10px; /* ボタン間の間隔 */
+    margin-top: 5px;
+}

@@ -110,13 +110,16 @@ h2{
     text-align: center;
     line-height: 1.6; /* 読みやすい行間 */
 }
-
 /* Button -------------------------------------------------- */
 /* ボタンのエリア */
 .home-button-area {
     display: flex;
+    flex-direction: column; /* 縦にする設定 */
+    align-items: center;
     justify-content: center;
+    gap: 16px;
     padding: 32px 16px 48px;
+
 }
 
 /* ボタン本体の修正 */
