@@ -10,17 +10,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/ancate.css">
   <link rel="icon" type="image/png" href="image/logo .png">
-  <style>
-    .hidden {
-      display: none;
-    }
-    /* 追加：横並びグループのスタイルを直接記述 */
-    .radio-group-inline {
-      display: flex;
-      gap: 10px; /* ボタン間の間隔 */
-      margin-top: 5px;
-    }
-  </style>
+
 </head>
 <body>
   <div class="wrapper">
@@ -65,20 +55,7 @@
       </form>
       </div>
     </div>
-
     </div>
-    <script>
-      function toggleExtra(show) {
-        const extra = document.getElementById('extra_questions');
-        extra.classList.toggle('hidden', !show);
-      }
-
-      function toggleSakura(show) {
-        const sakura = document.getElementById('sakura_followup');
-        sakura.classList.toggle('hidden', !show);
-      }
-    </script>
-
-
+    <script src="js/ancate.js"></script>
 </body>
 </html>
